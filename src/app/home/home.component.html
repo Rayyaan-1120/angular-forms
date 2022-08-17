@@ -1,0 +1,88 @@
+<div>
+    <header class="header">
+        <div>
+            <h2>{{userdata.fullname}} Dashboard</h2>
+        </div>
+        <div class="d-flex">
+            <div class="avatar">
+                <img src="data:image/jpg;base64,{{userdata.image}}" style="width:60px;height: 60px"/>
+            </div>
+            <button class="btn btn-danger btn-sm py-0 mx-2" type="button" (click)="logout()">Log out</button>
+        </div>
+
+    </header>
+
+    <div class="loadercontainer" *ngIf="loading">
+        <div class="basic"></div>
+    </div>
+
+    <div class="loadercontainer" *ngIf="error">
+            <p>There is an error in fetching Users</p>
+    </div>
+
+
+    <form action="" #searchform="ngForm" novalidate (ngSubmit)="searchuser()">
+
+
+    <div class="container mt-2 d-flex" style="align-items:center">
+        <div style="width: 100%;">
+            <input type="text" class="form-control input-lg" [(ngModel)]="searchformModel.query" #search="ngModel"  name="query" required>
+            <div  class="mt-1" *ngIf="search.touched && search.invalid">
+             <small  class="text-danger">Search Query is required</small>
+         </div>
+        </div>
+       <select [(ngModel)]="searchformModel.filtertype" #filtertype="ngModel"  class="form-select" name="filtertype" required style="width: 20%;">
+        <option value="fullname">By Full name</option>
+        <option value="email">By Email</option>
+      </select>
+       <button class="btn btn-primary btn-sm py-2 px-3 mx-2" type="submit" [disabled]="searchform.form.invalid">Search</button>
+    </div>
+</form>
+
+ 
+
+    <div class="container" *ngIf="fetchedusers.length > 0">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Users</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Age
+                                    </th>
+                                    
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let user of fetchedusers">
+                                        <td>
+                                            {{user.fullname}}
+                                        </td>
+                                        <td>
+                                            {{user.email}}
+                                        </td>
+                                        <td>
+                                            {{user.age}}
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</div>

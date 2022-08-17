@@ -1,0 +1,47 @@
+<div class="maincontainer">
+    <div class="signupcontainer imagebgcolor">
+       <img src="../../assets/5847ea22cef1014c0b5e4833.png" alt="angular image" width="180" height="180">
+       <div class="row mx-auto">
+          <h3>Angular RF</h3>
+       </div>
+    </div>
+    <div class="signupcontainer">
+        
+        <form style="width: 80%;margin: auto;"  novalidate [formGroup]="loginform" (ngSubmit)="Login()">
+            <h2 class="heading">Login</h2>
+
+            <!-- {{registerationform.value | json}} -->
+
+            
+            
+          
+            <div class="form-floating mb-3 ">
+                <input  type="email"  class="form-control" name="email" formControlName="email" placeholder="Email" id="floatingInput"  required 
+                 />
+                <label for="floatingInput">Email</label>
+                <div  class="mt-2" *ngIf="loginform.get('email')?.touched && loginform.get('email')?.invalid">
+                    <small *ngIf="loginform.get('email')?.errors?.['required']" class="text-danger">Email is required</small>
+                    <small *ngIf="loginform.get('email')?.errors?.['email']" class="text-danger">Email is not valid</small>
+                </div>
+            </div>
+
+
+            <div class="form-floating mb-3 ">
+                <input  type="password"  class="form-control" formControlName="password" name="password" placeholder="Password" id="floatingInput"  required 
+                 />
+                <label for="floatingInput">Password</label>
+                <div  class="mt-2" *ngIf="loginform.get('password')?.touched && loginform.get('password')?.invalid">
+                    <small *ngIf="loginform.get('password')?.errors?.['required']" class="text-danger">Password is required</small>
+                </div>
+            </div>
+
+            <div class="mx-auto"> 
+            <p (click)="navigatetoSignup()" class="text-primary mt-2" style="cursor: pointer;">Dont Have an account ? Sign up</p>
+            </div>
+           
+            <div class="d-grid gap-2 mx-auto">
+                    <button type="submit"   class="btn btn-dark p-2 my-1">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

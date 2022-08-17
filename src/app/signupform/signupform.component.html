@@ -1,0 +1,83 @@
+<div class="maincontainer">
+    <div class="signupcontainer imagebgcolor">
+       <img src="../../assets/5847ea22cef1014c0b5e4833.png" alt="angular image" width="180" height="180">
+       <div class="row mx-auto">
+          <h3>Angular TDF</h3>
+       </div>
+    </div>
+    <div class="signupcontainer">
+        
+        <form style="width: 80%;margin: auto;" #userForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+            <h2 class="heading">Sign Up</h2>
+
+            <!-- {{userForm.value | json}} -->
+
+            <!-- {{formmodel | json}} -->
+            
+            <div class="form-floating mb-3 col-xs-4">
+                <input [(ngModel)]="formmodel.firstname" type="text" #firstname="ngModel" class="form-control" [class.is-invalid]="firstname.touched && firstname.invalid" name="firstname" placeholder="Firstname" id="floatingInput"  required />
+                <label for="floatingInput">Firstname</label>
+            <div  class="mt-2" >
+                <small *ngIf="firstname.touched && firstname.invalid" class="text-danger">First name is required</small>
+            </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input [(ngModel)]="formmodel.lastname" type="text" #lastname="ngModel" class="form-control input-lg" [class.is-invalid]="lastname.touched && lastname.invalid" name="lastname" placeholder="Lastname" id="lastname"  required />
+                <label for="lastname">Lastname</label>
+            <!-- <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                Password is required
+            </div> -->
+            </div>
+            <!-- <div class="form-floating mb-3 col-xs-4">
+                <input [(ngModel)]="formmodel.email" type="email" #email="ngModel" [class.is-invalid]="email.touched && email.invalid"   class="form-control" name="email" placeholder="Email" id="floatingInput"  required />
+                <label for="floatingInput">email</label>
+           
+            </div> -->
+            <div class="form-floating mb-3 col-xs-4">
+                <input [(ngModel)]="formmodel.phone" type="tel" #phone="ngModel" [class.is-invalid]="phone.touched && phone.invalid"   class="form-control" name="phone" placeholder="Phone Number" id="floatingInput"  required 
+                pattern="^[0-9]{11}$" />
+                <label for="floatingInput">Phone</label>
+            <div *ngIf="phone.invalid && phone.touched">
+                <div *ngIf="phone.errors?.['required']" class="text-danger mt-2">Phone Number is required</div>
+                <div *ngIf="phone.errors?.['pattern']" class="text-danger mt-2">Phone Number is invalid</div>
+            </div>
+            </div>
+            <!-- <div class="form-group"> -->
+              <select (change)="checkValue(fav.value)" (blur)="checkValue(fav.value)" #fav="ngModel" [class.is-invalid]="fav.touched && error" [(ngModel)]="formmodel.favframework" class="form-select p-3 mb-3" name="favframework" required>
+                <option value="default">Select your Favourite Framework</option>
+                <option *ngFor="let frame of favframe">{{frame}}</option>
+              </select>
+              <div  class="mt-2" >
+                <small *ngIf="error && fav.touched" class="text-danger">Framework is Required</small>
+            </div>
+            <!-- </div> -->
+            <div class="form-group my-2">
+                 <div class="my-3">
+                    <label>Job Timings</label>
+                 </div>
+                <div class="form-check form-check-inline">
+                    <input [(ngModel)]="formmodel.jobtimings" class="form-check-input" type="radio" name="jobtimings" id="morning" value="morning" required>
+                    <label class="form-check-label" for="morning">Morning</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input [(ngModel)]="formmodel.jobtimings" class="form-check-input" type="radio" name="jobtimings" id="evening" value="evening" required>
+                    <label class="form-check-label" for="evening">Evening</label>
+                  </div>
+                  
+            </div>
+            <div class="d-grid gap-2 mx-auto">
+                <!-- <div class="col-6"> -->
+                    <!-- <button type="submit" [disabled]="userForm.form.invalid && error" class="btn btn-danger p-2 my-1">Draft</button> -->
+                <!-- </div> -->
+                <!-- <div class="col-6"> -->
+                    <button type="submit" [disabled]="userForm.form.invalid || error" class="btn btn-dark p-2 my-1">Submit</button>
+                <!-- </div> -->
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg -->
+
+<!-- [disabled]="!signupForm.form.valid" -->

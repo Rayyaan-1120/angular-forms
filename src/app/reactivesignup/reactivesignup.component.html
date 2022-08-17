@@ -1,0 +1,133 @@
+<div class="maincontainer">
+    <div class="signupcontainer imagebgcolor">
+       <img src="../../assets/5847ea22cef1014c0b5e4833.png" alt="angular image" width="180" height="180">
+       <div class="row mx-auto">
+          <h3>Angular RF</h3>
+       </div>
+    </div>
+    <div class="signupcontainer">
+        
+        <form style="width: 80%;margin: auto;"  novalidate [formGroup]="registerationform" (ngSubmit)="onSubmit()">
+            <h2 class="heading">Sign Up</h2>
+
+            <!-- {{formmodel | json}} -->
+            
+            
+            <div class="form-floating mb-3">
+                <input [class.is-invalid]="registerationform.get('fullname')?.touched && registerationform.get('fullname')?.invalid"  type="text"  class="form-control input-lg" formControlName="fullname"  name="fullname" placeholder="Full name" id="fullname"  />
+                <label for="fullname">Full Name</label>
+                <div  class="mt-2" *ngIf="registerationform.get('fullname')?.touched && registerationform.get('fullname')?.invalid">
+                    <small *ngIf="registerationform.get('fullname')?.errors?.['required']" class="text-danger">Full name is required</small>
+                    <small *ngIf="registerationform.get('fullname')?.errors?.['minlength']" class="text-danger">Full name must be greater than 6 charachters</small>
+                    <small *ngIf="registerationform.get('fullname')?.errors?.['forbiddenusername']" class="text-danger">Full name cannot be {{registerationform.get('fullname')?.errors?.['forbiddenusername'].value}}</small>
+                </div>
+            </div>
+            <!-- <div class="form-floating mb-3 col-xs-4">
+                <input [(ngModel)]="formmodel.email" type="email" #email="ngModel" [class.is-invalid]="email.touched && email.invalid"   class="form-control" name="email" placeholder="Email" id="floatingInput"  required />
+                <label for="floatingInput">email</label>
+           
+            </div> -->
+            <div class="form-floating mb-3 ">
+                <input  type="email"  class="form-control" name="email" formControlName="email" placeholder="Email" id="floatingInput"  required 
+                 />
+                <label for="floatingInput">Email</label>
+                <div  class="mt-2" *ngIf="registerationform.get('email')?.touched && registerationform.get('email')?.invalid">
+                    <small *ngIf="registerationform.get('email')?.errors?.['required']" class="text-danger">Email is required</small>
+                    <small *ngIf="registerationform.get('email')?.errors?.['email']" class="text-danger">Email is not valid</small>
+                </div>
+            </div>
+            <div class="form-floating mb-3 ">
+                <input  type="number"  class="form-control" name="age" formControlName="age" placeholder="Age" id="floatingInput"  required 
+                 />
+                <label for="floatingInput">Age</label>
+                <div  class="mt-2" *ngIf="registerationform.get('age')?.touched && registerationform.get('age')?.invalid">
+                    <small *ngIf="registerationform.get('age')?.errors?.['required']" class="text-danger">Age is required</small>
+                    <small *ngIf="registerationform.get('age')?.errors?.['age']" class="text-danger">Age should must be greater or equal to 18</small>
+                </div>
+            </div>
+
+            <!-- <div formGroupName="address">
+
+                <div class="form-floating mb-3">
+                    <input  type="text"  class="form-control input-lg" formControlName="city"  name="city" placeholder="City" id="city"  required />
+                    <label for="city">City</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input  type="text"  class="form-control input-lg" formControlName="state"  name="state" placeholder="State" id="state"  required />
+                    <label for="state">State</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input  type="text"  class="form-control input-lg" formControlName="postalcode"  name="postalcode" placeholder="Postal Code" id="postalcode"  required />
+                    <label for="postalcode">Postal Code</label>
+                </div>
+            </div> -->
+
+
+            <div class="form-floating mb-3 ">
+                <input  type="password"  class="form-control" formControlName="password" name="password" placeholder="Password" id="floatingInput"  required 
+                 />
+                <label for="floatingInput">Password</label>
+                <div  class="mt-2" *ngIf="registerationform.get('password')?.touched && registerationform.get('password')?.invalid">
+                    <small *ngIf="registerationform.get('password')?.errors?.['required']" class="text-danger">Password is required</small>
+                    <small *ngIf="registerationform.get('password')?.errors?.['minlength']" class="text-danger">Password must be equal or greater than 6 charachters</small>
+                </div>
+            </div>
+            <div class="form-floating mb-3 ">
+                <input [class.is-invalid]="registerationform.errors?.['mismatch'] || (registerationform.get('confirmpassword')?.touched && registerationform.get('confirmpassword')?.invalid)"  type="password"  class="form-control" formControlName="confirmpassword" name="confirmpassword" placeholder="Confirm password" id="floatingInput"  required 
+                 />
+                <label for="floatingInput">Confirm Password</label>
+                <div  class="mt-2" *ngIf="registerationform.errors?.['mismatch']">
+                    <small class="text-danger">Passwords do not match</small>
+                </div>
+                <div  class="mt-2" *ngIf="registerationform.get('confirmpassword')?.touched && registerationform.get('confirmpassword')?.invalid">
+                    <small class="text-danger" *ngIf="registerationform.get('confirmpassword')?.errors?.['required']">Confirm Password is also required</small>
+                </div>
+            </div>
+            <div class="form-group mb-3 ">
+                <input (change)="getFile($event)" [class.is-invalid]="registerationform.get('photo')?.touched && registerationform.get('photo')?.invalid"  type="file"  class="form-control" name="photo" placeholder="Upload Image"  required 
+                 />
+                <div  class="mt-2" *ngIf="registerationform.get('photo')?.touched && registerationform.get('photo')?.invalid">
+                    <small class="text-danger" *ngIf="registerationform.get('photo')?.errors?.['required']">Photo is required</small>
+                    <small class="text-danger" *ngIf="registerationform.get('photo')?.errors?.['pattern']">Only Images are required</small>
+                </div>
+            </div>
+            <!-- <div class="form-group"> -->
+              <!-- <select (change)="checkValue(fav.value)" (blur)="checkValue(fav.value)" #fav="ngModel" [class.is-invalid]="fav.touched && error" [(ngModel)]="formmodel.favframework" class="form-select p-3 mb-3" name="favframework" required>
+                <option value="default">Select your Favourite Framework</option>
+                <option *ngFor="let frame of favframe">{{frame}}</option>
+              </select>
+              <div  class="mt-2" >
+                <small *ngIf="error && fav.touched" class="text-danger">Framework is Required</small>
+            </div> -->
+            <!-- </div> -->
+            <!-- <div class="form-group my-2">
+                 <div class="my-3">
+                    <label>Job Timings</label>
+                 </div>
+                <div class="form-check form-check-inline">
+                    <input [(ngModel)]="formmodel.jobtimings" class="form-check-input" type="radio" name="jobtimings" id="morning" value="morning" required>
+                    <label class="form-check-label" for="morning">Morning</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input [(ngModel)]="formmodel.jobtimings" class="form-check-input" type="radio" name="jobtimings" id="evening" value="evening" required>
+                    <label class="form-check-label" for="evening">Evening</label>
+                  </div>
+                  
+            </div> -->
+            <div class="mx-auto"> 
+                <p (click)="navigatetoLogin()" class="text-primary mt-2" style="cursor: pointer;">Already Have an account ? Log in</p>
+                </div>
+            <div class="d-grid gap-2 mx-auto">
+                <!-- <div class="col-6"> -->
+                    <!-- <button type="submit" [disabled]="userForm.form.invalid && error" class="btn btn-danger p-2 my-1">Draft</button> -->
+                <!-- </div> -->
+                <!-- <div class="col-6"> -->
+                    <button type="submit"   class="btn btn-dark p-2 my-1">Submit</button>
+                    <!-- <button type="button" (click)="loadapidata()"  class="btn btn-primary p-2 my-1">Load Default Form Values</button> -->
+                    <button type="button" (click)="removevalidationandaddnewvalidation()"  class="btn btn-primary p-2 my-1">Draft form</button>
+                <!-- </div> -->
+            </div>
+        </form>
+    </div>
+</div>
+

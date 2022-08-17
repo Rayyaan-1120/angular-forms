@@ -1,0 +1,35 @@
+.maincontainer{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    min-height: 100vh;
+   background-color: #EEEEEE;
+   font-family: 'Poppins', sans-serif;
+
+}
+
+
+.signupcontainer{
+    width: 50%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading{
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.imagebgcolor{
+    
+    /* background-color: #CCD1E4; */
+    /* background-color: #B91646; */
+    background-color: #EFB7B7;
+}
